@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+use App\Http\Controllers\Api\TaskController;
+use App\Http\Controllers\Api\TodoController;
+
+Route::get('/task', [TaskController::class, 'index']);
+Route::get('/task/{id}', [TaskController::class, 'show']);
+Route::put('/task/{id}', [TaskController::class, 'update']);
+Route::delete('/task/{id}', [TaskController::class, 'destroy']);
+
+
+Route::get('/categories', [TodoController::class, 'getCategories']);
+Route::get('/users', [TodoController::class, 'indexUsers']);
+Route::post('/submit', [TodoController::class, 'store']);
+
+
